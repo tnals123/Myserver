@@ -1,0 +1,14 @@
+.body{
+    background-color:black;
+}
+.addmemoscreen{
+    display: flex;
+    justify-content: center;
+    
+}
+.date:hover{
+    color:red;
+}
+.calender{
+    background-color: white;
+}
