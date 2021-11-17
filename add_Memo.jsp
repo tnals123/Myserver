@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=utf-8" pageEncoding="utf-8" %>
 <head>
-    <link href="main_addmemo.css" rel="stylesheet" type="text/css">
+    <link href="add_Memo.css" rel="stylesheet" type="text/css">
     <script>
         function another(){
             document.addmymemo.action="Store_Memo.jsp";

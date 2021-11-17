@@ -4,11 +4,51 @@
 .addmemoscreen{
     display: flex;
     justify-content: center;
-    
 }
-.date:hover{
-    color:red;
+.addmemo{
+    width:600px;
+    height: 800px;
+    background-color: lightgreen;
+}
+.title{
+    color: black;
+    font-weight: 500;
+    font-size: 25px;
+    display: flex;
+    justify-content: center;
 }
 .calender{
     background-color: white;
+}
+.date{
+    display: flex;
+    margin-left: 40px;
+    margin-right: 40px;
+    justify-content: space-between;
+}
+.date2{
+    margin-left: 40px;
+    margin-right: 40px;
+}
+.selectdate{
+    width:100px;
+    height:30px;
+}
+.writememo{
+    margin-left:40px;
+    width: 520px;
+    height: 400px;
+}
+#minite{
+    margin-left: 105px;
+}
+#memobutton{
+    width: 80px;
+    height: 30px;
+    border: 1px solid black;
+}
+.button{
+    display: flex;
+    justify-content: center;
+    margin-top:100px;
 }
