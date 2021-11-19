@@ -1,0 +1,13 @@
+.body{
+    background-color: black;
+}
+.title{
+    display: flex;
+    justify-content: center;
+    font-weight: 400;
+    color:yellow;
+}
+.resistersection{
+    display: flex;
+    justify-content: center;
+}

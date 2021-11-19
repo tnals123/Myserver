@@ -19,17 +19,17 @@ if (cookies != null){
     <link rel="stylesheet" type="text/css" href="loginpage.css">
     <script>
         var ischecked=false;
-        if (<%=realid%> !=null){
-            alert("<%=realid%>");
-            location.href="main.jsp";
-        }
+        // if (<%=realid%> !=null){
+        //     alert("<%=realid%>");
+        //     location.href="main.jsp";
+        // }
         function another(){
             ischecked=true;
             document.gotoresister.action="resister.jsp";
             document.gotoresister.submit();
         }
         function goToMain(){
-            document.gotoresister.action="main.jsp";
+            document.gotoresister.action="auth.jsp";
             document.gotoresister.submit();
 
         }
@@ -89,10 +89,10 @@ if (cookies != null){
             <form action="auth.jsp" method="post" class="loginsection_2" name="gotoresister">
                 <h1 class="logintext">로그인</h1>
                 <p class="idpw_section">
-                    <input type="text" class="idpw" placeholder="아이디를 입력하세요">
+                    <input type="text" class="idpw" placeholder="아이디를 입력하세요" name="id_value">
                 </p>
                 <p class="idpw_section">
-                    <input type="password" class="idpw" placeholder="비밀번호를 입력하세요">
+                    <input type="password" class="idpw" placeholder="비밀번호를 입력하세요" name="pw_value">
                 </p>
                 <p class="checkbox_section">
                     <label class="checkbox">로그인 유지</label><input type="checkbox" checked>

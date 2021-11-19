@@ -6,7 +6,7 @@
     String memo = request.getParameter("mymemo");
     Class.forName("com.mysql.jdbc.Driver");
     Connection conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/stageus","SooMin","dkssud1010@");
-    String signmyinfo="INSERT INTO userinfo(id) VALUES(?)";
+    String signmyinfo="INSERT INTO officers_memo(memo) VALUES(?)";
     PreparedStatement pstmt = conn.prepareStatement(signmyinfo);
 
     pstmt.setString(1,memo);
