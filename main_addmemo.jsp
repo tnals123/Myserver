@@ -1,4 +1,34 @@
 <%@ page language="java" contentType="text/html; charset=utf-8" pageEncoding="utf-8" %>
+<%@ page import="java.sql.Connection"%>
+<%@ page import="java.sql.DriverManager"%>
+<%@ page import="java.sql.PreparedStatement"%>
+<%@ page import="java.sql.ResultSet"%>
+<%
+    Cookie[] cookies = request.getCookies();
+    Cookie id_cookie=null;
+    String myid=null;
+    if (cookies != null){
+        for (Cookie c : cookies){
+            if (c.getName().equals("id")){
+                id_cookie=c;
+                myid=c.getValue();
+            }
+        }
+    }
+    Class.forName("com.mysql.jdbc.Driver");
+    Connection conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/stageus","SooMin","dkssud1010@");
+    
+    String get_usernumber="SELECT * FROM userinfo WHERE id=?";
+    PreparedStatement pstmt = conn.prepareStatement(get_usernumber);
+    pstmt.setString(1,myid);
+    ResultSet rs = pstmt.executeQuery();
+
+    String user_number=null;
+    if(rs.next()){
+        user_number=rs.getString("num");
+    }
+    
+%>
 <head>
     <link href="main_addmemo.css" rel="stylesheet" type="text/css">
     <script>

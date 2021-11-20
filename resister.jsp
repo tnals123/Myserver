@@ -30,9 +30,9 @@
                 <input type="text" class="idpw" placeholder="연락처를 입력하세요" name="phonenumber">
             </p>
             <p class="checkbox_section">
-                <label class="labelsection">사원</label><input type="radio" class="choice" name="office">
-                <label class="labelsection">팀장</label><input type="radio" class="choice" name="office">
-                <label class="labelsection">사장</label><input type="radio" class="choice" name="office">
+                <label class="labelsection">사원</label><input type="radio" value = "employee" class="choice" name="office">
+                <label class="labelsection">팀장</label><input type="radio" value = "team_leader" class="choice" name="office">
+                <label class="labelsection">사장</label><input type="radio" value = "ceo" class="choice" name="office">
             </p>
             <p class="resisterbuttonsection">
                 <input type="button" class="resisterbutton" value="회원가입" onclick="movePage()">

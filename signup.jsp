@@ -7,7 +7,7 @@
     String pwvalue = request.getParameter("pw_value");
     String name = request.getParameter("name");
     String phonenumber = request.getParameter("phonenumber");
-    String officer = request.getParameter("office");
+    String officer[] = request.getParameterValues("office");
 
     Class.forName("com.mysql.jdbc.Driver");
     Connection conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/stageus","SooMin","dkssud1010@");
@@ -18,7 +18,7 @@
     pstmt.setString(2,pwvalue);
     pstmt.setString(3,name);
     pstmt.setString(4,phonenumber);
-    pstmt.setString(5,officer.toString());
+    pstmt.setString(5,officer[0]);
     pstmt.executeUpdate();
     
 %>

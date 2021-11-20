@@ -12,7 +12,7 @@
     // 데이터베이스 연결
     Connection conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/stageus","SooMin","dkssud1010@");
     // 쿼리 던지기
-    String sql="SELECT * FROM userinfo WHERE id=? AND pw=? AND num=?";
+    String sql="SELECT * FROM userinfo WHERE id=? AND pw=?";
     
 
     PreparedStatement pstmt = conn.prepareStatement(sql);
@@ -27,9 +27,7 @@
 
     boolean isExist= false;
     if (rs.next()){
-        String loginid = rs.getString("num");
-        System.out.println(loginid);
-        Cookie c= new Cookie("num",idvalue);
+        Cookie c= new Cookie("id",idvalue);
         response.addCookie(c);
         isExist=true; 
     }
@@ -38,8 +36,6 @@
 <script>
     if (<%=isExist%>){
         location.href="main.jsp";
-        console.log("<%=loginid%>");
-        
     }
     else{
         alert("아이디나 비밀번호가 틀리셨습니다");
