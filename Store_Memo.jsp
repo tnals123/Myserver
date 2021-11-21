@@ -52,12 +52,5 @@
             
 %>
 <script>
-    alert("<%=year[0]%>");
-    alert("<%=month[0]%>");
-    alert("<%=date[0]%>");
-    alert("<%=time[0]%>");
-    alert("<%=minite[0]%>");
-    alert("<%=memo%>");
-    alert("<%=user_number%>");
-    location.href="loginpage.jsp";
+    location.href="main.jsp";
 </script>

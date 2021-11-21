@@ -21,10 +21,10 @@
     display: flex;
     justify-content: center;
 }
-.memosection{
+.mymemosection{
     width: 600px;
     height: 100%;
-    background-color: lightyellow;
+    background-color: black;
 }
 #addbutton{
     border-radius: 25px;
