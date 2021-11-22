@@ -9,6 +9,9 @@
 
     String myid=null;
     String user_number=null;
+    String user_classes=null;
+    String user_name = null;
+    
 
     if (cookies != null){
         for (Cookie c : cookies){
@@ -29,6 +32,8 @@
 
     if(rs.next()){
         user_number=rs.getString("num");
+        user_classes=rs.getString("office");
+        user_name=rs.getString("name");
     }
 
     String[] year = request.getParameterValues("year");
@@ -38,7 +43,7 @@
     String[] minite = request.getParameterValues("minite");
     String memo = request.getParameter("mymemo");
 
-    String input_memo="INSERT INTO officers_memo(num,memo,memo_year,month,date,time,minite) VALUES(?,?,?,?,?,?,?)";
+    String input_memo="INSERT INTO officers_memo(num,memo,memo_year,month,date,time,minite,officers_classes,officers_name) VALUES(?,?,?,?,?,?,?,?,?)";
     PreparedStatement pstmt2 = conn.prepareStatement(input_memo);
 
     pstmt2.setString(1,user_number);
@@ -48,9 +53,12 @@
     pstmt2.setString(5,date[0]);
     pstmt2.setString(6,time[0]);
     pstmt2.setString(7,minite[0]);
+    pstmt2.setString(8,user_classes);
+    pstmt2.setString(9,user_name);
     pstmt2.executeUpdate();
             
 %>
 <script>
+    alert("<%=user_classes%>");
     location.href="main.jsp";
 </script>
