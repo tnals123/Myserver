@@ -115,7 +115,7 @@
 <head>
     <link rel="stylesheet" type="text/css" href="main.css">
     <script>
-
+        
         var defaultsectionarray = [];
         var isEmployeebuttonclicked = false;
         var sectionarray = [];
@@ -125,6 +125,7 @@
         var sectionarray_teamleader = [];
 
         window.onload=function(){
+            
             var check_user_info = "<%=user_classes%>";
             var button_seeteamleadermemo = document. getElementById("seeothermemo_team");
             var button_seeemployeememo = document. getElementById("seeothermemo_officer");
@@ -180,7 +181,7 @@
                     var defaultmemosection2 = document.createElement('span');
                     var buttonsection = document.createElement('span');
                     var section_addmemo = document.createElement("section");
-                    var temporaryarray=[];
+                    var temporary = [];
 
                     var br = document.createElement('br');
                     var br2 = document.createElement('br');
@@ -196,7 +197,9 @@
                                                             +'\u00a0\u00a0\u00a0\u00a0\u00a0\u00a0\u00a0\u00a0\u00a0\u00a0\u00a0\u00a0'
                                                             +'\u00a0\u00a0\u00a0\u00a0\u00a0\u00a0\u00a0\u00a0\u00a0\u00a0\u00a0\u00a0'
                                                             +'\u00a0\u00a0\u00a0\u00a0\u00a0\u00a0\u00a0\u00a0\u00a0\u00a0\u00a0\u00a0');
-
+                    
+                    delete_button.type="button";
+                    correction_button.type="button";
                     section_addmemo.style.backgroundColor = "lightyellow";
                     defaultmemosection2.style.width="500px";
                     section_addmemo.style.marginTop="20px";
@@ -208,6 +211,7 @@
                     correction_button.style.marginLeft="10px";
                     correction_button.style.height="22px";
                     correction_button.innerText = "수정하기";
+
                     defaultmemosection2.appendChild(default_memo_wrtie);
                     defaultmemosection2.appendChild(br);
                     defaultmemosection2.appendChild(br2);
@@ -222,18 +226,29 @@
                     section_addmemo.appendChild(defaultmemosection2);
                     buttonsection.appendChild(delete_button);
                     buttonsection.appendChild(correction_button);
-                    section_addmemo.appendChild(buttonsection);   
-                    temporaryarray.push(section_addmemo);  
-                    temporaryarray.push(delete_button); 
-                    temporaryarray.push(correction_button);   
-                    defaultsectionarray.push(temporaryarray);
-                    console.log(defaultsectionarray);     
+                    section_addmemo.appendChild(buttonsection); 
+
+                    temporary.push(i);
+                    temporary.push(delete_button);
+                    temporary.push(correction_button);
+                    temporary.push(section_addmemo); 
+
+                    defaultsectionarray.push(temporary);
+                    asdf();
+                    console.log(defaultsectionarray[i]);
+                 
                     
-                    
-                    
+                      
                 }
             }
             
+        }
+        function asdf(){
+                defaultsectionarray[0][1].onclick = Delete_Memo(0);
+            }  
+        function Delete_Memo(num){
+            var labelnum = defaultsectionarray[num];
+            console.log(num);
         }
         function movePage_AddMemo(){
             document.resister.action="main_addmemo.jsp";
@@ -290,8 +305,7 @@
                         var buttonsection = document.createElement('span');
                         var br = document.createElement('br');
                         var br2 = document.createElement('br');
-                        var temporaryarray=[];
-
+                      
                         var default_memo_wrtie = document.createTextNode('\u00a0'+'\u00a0'+'\u00a0'+defaultmemo_teamleader[i]);
                         var default_memo_year = document.createTextNode("-"+defaultyear_teamleader[i]+" 년 ");
                         var default_memo_month = document.createTextNode(defaultmonth_teamleader[i]+'\u00a0');
@@ -333,10 +347,7 @@
                         buttonsection.appendChild(delete_button);
                         buttonsection.appendChild(correction_button);
                         section_addmemo.appendChild(buttonsection);            
-                        temporaryarray.push(section_addmemo);
-                        temporaryarray.push(delete_button);
-                        temporaryarray.push(correction_button);
-                        sectionarray_teamleader.push(temporaryarray);
+                        sectionarray_teamleader.push(section_addmemo);
                 }
             }
         }
@@ -416,7 +427,6 @@
                                 var buttonsection = document.createElement('span');
                                 var br = document.createElement('br');
                                 var br2 = document.createElement('br');
-                                var temporaryarray = [];
                                 var default_memo_wrtie = document.createTextNode('\u00a0'+'\u00a0'+'\u00a0'+defaultmemo_employee[i]);
                                 var default_memo_year = document.createTextNode("-"+defaultyear_employee[i]+" 년 ");
                                 var default_memo_month = document.createTextNode(defaultmonth_employee[i]+'\u00a0');
@@ -456,13 +466,8 @@
                                 section_addmemo.appendChild(defaultmemosection2);
                                 buttonsection.appendChild(delete_button);
                                 buttonsection.appendChild(correction_button);
-                                section_addmemo.appendChild(buttonsection);
-                                
-                                
-                                temporaryarray.push(section_addmemo);
-                                temporaryarray.push(delete_button);
-                                temporaryarray.push(correction_button);
-                                sectionarray_teamleader.push(temporaryarray);
+                                section_addmemo.appendChild(buttonsection);             
+                                sectionarray.push(section_addmemo);
                                 
                                 
                         }   
