@@ -234,7 +234,7 @@
                     temporary.push(section_addmemo); 
 
                     defaultsectionarray.push(temporary);
-                    asdf();
+                    
                     console.log(defaultsectionarray[i]);
                  
                     
@@ -243,9 +243,7 @@
             }
             
         }
-        function asdf(){
-                defaultsectionarray[0][1].onclick = Delete_Memo(0);
-            }  
+        
         function Delete_Memo(num){
             var labelnum = defaultsectionarray[num];
             console.log(num);
@@ -439,6 +437,8 @@
                                                                         +'\u00a0\u00a0\u00a0\u00a0\u00a0\u00a0\u00a0\u00a0\u00a0\u00a0\u00a0\u00a0'
                                                                         +'\u00a0\u00a0\u00a0\u00a0\u00a0\u00a0\u00a0\u00a0\u00a0');
 
+                                delete_button.type="button";
+                                correction_button.type="button";
                                 section_addmemo.style.backgroundColor="lightyellow";
                                 defaultmemosection2.style.color="red";
                                 defaultmemosection2.style.width="500px";
@@ -451,6 +451,8 @@
                                 correction_button.style.marginLeft="10px";
                                 correction_button.style.height="22px";
                                 correction_button.innerText = "수정하기";
+                                var temporary = [];
+
                                 defaultmemosection2.appendChild(default_memo_wrtie);
                                 defaultmemosection2.appendChild(br);
                                 defaultmemosection2.appendChild(br2);
@@ -466,8 +468,18 @@
                                 section_addmemo.appendChild(defaultmemosection2);
                                 buttonsection.appendChild(delete_button);
                                 buttonsection.appendChild(correction_button);
-                                section_addmemo.appendChild(buttonsection);             
-                                sectionarray.push(section_addmemo);
+                                section_addmemo.appendChild(buttonsection);   
+                                temporary.push(delete_button);
+                                temporary.push(correction_button);
+                                temporary.push(section_addmemo);
+                                sectionarray.push(temporary);
+                                // i 의 값이 자꾸 101로 떠요 ㅠㅠ
+                                sectionarray[i][0].onclick = function(){
+                                    Delete_Memo(0);
+                                }
+                                sectionarray[i][1].onclick = function(){
+                                    console.log(i);
+                                }
                                 
                                 
                         }   

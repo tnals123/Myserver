@@ -15,7 +15,7 @@
             <h1 class = "title">회원가입</h1>
            
             <p class="idpw_section">
-                <input type="text" class="idpw" placeholder="아이디를 입력하세요" name="id_value">
+                <input type="text" class="idpw" maxlength="10" minlength="6" placeholder="아이디를 영문 6글자~10글자" name="id_value">
             </p>
             <p class="idpw_section">
                 <input type="password" class="idpw" placeholder="비밀번호를 입력하세요" name="pw_value">
