@@ -175,6 +175,17 @@
             for (var i=0; i<=defaultmemo.length;i++){
                 if(defaultmemo[i]!="null" && defaultmemo[i]!=undefined){
 
+                    var form = document.createElement("form");
+                    form.setAttribute("charset", "UTF-8");
+                    form.setAttribute("method", "Post"); 
+                    form.setAttribute("action","DeleteMemo.jsp");
+
+                    var hiddenField = document.createElement("input");
+                    hiddenField.setAttribute("type", "hidden");
+                    hiddenField.setAttribute("name", "mName");
+                    hiddenField.setAttribute("value", defaultmemo[i]);
+                    form.appendChild(hiddenField);
+                    
                     var section_addmemo = document.createElement("section");
                     var delete_button = document.createElement("button");
                     var correction_button = document.createElement("button");
@@ -221,8 +232,9 @@
                     defaultmemosection2.appendChild(default_memo_date);
                     defaultmemosection2.appendChild(default_memo_time);
                     defaultmemosection2.appendChild(default_memo_minite);
-          
-                    section[0].appendChild(section_addmemo);
+
+                    form.appendChild(section_addmemo);
+                    section[0].appendChild(form);
                     section_addmemo.appendChild(defaultmemosection2);
                     buttonsection.appendChild(delete_button);
                     buttonsection.appendChild(correction_button);
@@ -231,11 +243,14 @@
                     temporary.push(i);
                     temporary.push(delete_button);
                     temporary.push(correction_button);
-                    temporary.push(section_addmemo); 
-
-                    defaultsectionarray.push(temporary);
+                    temporary.push(form); 
                     
-                    console.log(defaultsectionarray[i]);
+                    defaultsectionarray.push(temporary);
+                    console.log(defaultsectionarray[i][3]);
+                    defaultsectionarray[i][1].onclick = function(){
+                        this.parentElement.parentElement.parentElement.submit();
+                        section[0].removeChild(this.parentElement.parentElement.parentElement);
+                    }
                  
                     
                       
@@ -244,9 +259,11 @@
             
         }
         
-        function Delete_Memo(num){
-            var labelnum = defaultsectionarray[num];
-            console.log(num);
+        function Delete_Memo(){
+            document.asdf.action="DeleteMemo.jsp";
+            document.asdf.submit();
+            console.log("asdf");
+            
         }
         function movePage_AddMemo(){
             document.resister.action="main_addmemo.jsp";
@@ -296,6 +313,7 @@
 
                     if(defaultmemo_teamleader[i]!="null" && defaultmemo_teamleader[i]!=undefined){
 
+                        var myform = document. createElement("form");
                         var section_addmemo = document.createElement("section");
                         var delete_button = document.createElement("button");
                         var correction_button = document.createElement("button");
@@ -417,10 +435,21 @@
                         
                     for (var i=0; i<=defaultmemo_employee.length;i++){
                             if(defaultmemo_employee[i]!="null" && defaultmemo_employee[i]!=undefined){
-                                
+                                var myform = document. createElement("form");
+                                myform.name = "myform";
+                                myform.method = "post";
+                                myform.action = "DeleteMemo.jsp";
+                                var input21 = document. createElement("input");
+                                input21.setAttribute("type", "hidden");
+                                input21.setAttribute("value",i);
+                                input21.setAttribute("name","myvalue");
+                                console.log(i);
+                                var mynum = i;
                                 var section_addmemo = document.createElement("section");
                                 var delete_button = document.createElement("button");
+                                delete_button.setAttribute("name",i);
                                 var correction_button = document.createElement("button");
+                                correction_button.setAttribute("name",i);
                                 var defaultmemosection2 = document.createElement('span');
                                 var buttonsection = document.createElement('span');
                                 var br = document.createElement('br');
@@ -452,6 +481,7 @@
                                 correction_button.style.height="22px";
                                 correction_button.innerText = "수정하기";
                                 var temporary = [];
+                                var temporary2 = [];
 
                                 defaultmemosection2.appendChild(default_memo_wrtie);
                                 defaultmemosection2.appendChild(br);
@@ -464,21 +494,30 @@
                                 defaultmemosection2.appendChild(default_memo_minite);
                                 defaultmemosection2.appendChild(default_who_write);
                                 
-                                section[0].appendChild(section_addmemo);
+                                
                                 section_addmemo.appendChild(defaultmemosection2);
                                 buttonsection.appendChild(delete_button);
                                 buttonsection.appendChild(correction_button);
-                                section_addmemo.appendChild(buttonsection);   
+                                section_addmemo.appendChild(buttonsection); 
+                                myform.appendChild(section_addmemo);
+                                section[0].appendChild(myform);
+                                console.log(myform);
+                                
+                                temporary.push(myform);
+                                temporary.push(input21);
                                 temporary.push(delete_button);
                                 temporary.push(correction_button);
                                 temporary.push(section_addmemo);
                                 sectionarray.push(temporary);
+
+                                console.log(i);
                                 // i 의 값이 자꾸 101로 떠요 ㅠㅠ
                                 sectionarray[i][0].onclick = function(){
-                                    Delete_Memo(0);
+                                    // Delete_Memo(this.name);
+                                    console.log();
                                 }
                                 sectionarray[i][1].onclick = function(){
-                                    console.log(i);
+                                    console.log(sectionarray[i-100]);
                                 }
                                 
                                 
@@ -492,7 +531,7 @@
             employeebutton.value="사원 메모 보기";
             for (var i=0; i<sectionarray.length;i++){
                 console.log(sectionarray[i]);
-                section[0].removeChild(sectionarray[i]);
+                section[0].removeChild(sectionarray[i][0]);
                 }
             sectionarray=[];
         }
