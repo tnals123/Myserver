@@ -12,6 +12,7 @@
     String user_classes=null;
     String user_name = null;
     String mymemo = request.getParameter("mName");
+    String myoriginmemo = request.getParameter("originmemo");
 
     if (cookies != null){
         for (Cookie c : cookies){
@@ -25,14 +26,15 @@
     Class.forName("com.mysql.jdbc.Driver");
     Connection conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/stageus","SooMin","dkssud1010@");
 
-    String get_usermemo="DELETE FROM officers_memo WHERE memo = ? ";
+    String get_usermemo="UPDATE officers_memo SET memo = ? WHERE memo = ? ";
     PreparedStatement pstmt2 = conn.prepareStatement(get_usermemo);
     pstmt2.setString(1,mymemo);
+    pstmt2.setString(2,myoriginmemo);
     pstmt2.executeUpdate();
             
 %>
 
 <script>
-    alert("삭제 완료");
+    alert("수정하였습니다!");
     location.href = "main.jsp";
 </script>

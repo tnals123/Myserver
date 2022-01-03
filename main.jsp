@@ -113,7 +113,7 @@
    
 %>
 <head>
-    <link rel="stylesheet" type="text/css" href="main.css">
+    <link rel="stylesheet" type="text/css" href="main2.css">
     <script>
         
         var defaultsectionarray = [];
@@ -180,18 +180,35 @@
                     form.setAttribute("method", "Post"); 
                     form.setAttribute("action","DeleteMemo.jsp");
 
+                    var form_correction = document.createElement("form");
+                    form_correction.setAttribute("charset", "UTF-8");
+                    form_correction.setAttribute("method", "Post"); 
+                    form_correction.setAttribute("action","CorrectMemo.jsp");
+                    form_correction.style.display = "none";
+
                     var hiddenField = document.createElement("input");
                     hiddenField.setAttribute("type", "hidden");
                     hiddenField.setAttribute("name", "mName");
                     hiddenField.setAttribute("value", defaultmemo[i]);
                     form.appendChild(hiddenField);
+
+                    var hiddenField_correction = document.createElement("input");
+                    hiddenField_correction.setAttribute("type", "hidden");
+                    hiddenField_correction.setAttribute("name", "mName");
+                    var hiddenField_correction_2 = document.createElement("input");
+                    hiddenField_correction_2.setAttribute("type", "hidden");
+                    hiddenField_correction_2.setAttribute("name", "originmemo");
+                    form_correction.appendChild(hiddenField_correction);
+                    form_correction.appendChild(hiddenField_correction_2);
                     
                     var section_addmemo = document.createElement("section");
                     var delete_button = document.createElement("button");
                     var correction_button = document.createElement("button");
                     var defaultmemosection2 = document.createElement('span');
                     var buttonsection = document.createElement('span');
-                    var section_addmemo = document.createElement("section");
+                    var input = document.createElement("input");
+                    input.setAttribute("type", "hidden");
+                    input.value = defaultmemo[i];
                     var temporary = [];
 
                     var br = document.createElement('br');
@@ -211,6 +228,9 @@
                     
                     delete_button.type="button";
                     correction_button.type="button";
+                    input.style.zIndex = "100";
+                    input.style.position = "absolute";
+                    input.style.marginLeft = "-1%";
                     section_addmemo.style.backgroundColor = "lightyellow";
                     defaultmemosection2.style.width="500px";
                     section_addmemo.style.marginTop="20px";
@@ -224,6 +244,7 @@
                     correction_button.innerText = "수정하기";
 
                     defaultmemosection2.appendChild(default_memo_wrtie);
+                    defaultmemosection2.appendChild(input);
                     defaultmemosection2.appendChild(br);
                     defaultmemosection2.appendChild(br2);
                     defaultmemosection2.appendChild(spacebar);
@@ -233,36 +254,63 @@
                     defaultmemosection2.appendChild(default_memo_time);
                     defaultmemosection2.appendChild(default_memo_minite);
 
-                    form.appendChild(section_addmemo);
                     section[0].appendChild(form);
                     section_addmemo.appendChild(defaultmemosection2);
                     buttonsection.appendChild(delete_button);
                     buttonsection.appendChild(correction_button);
                     section_addmemo.appendChild(buttonsection); 
+                    form.appendChild(section_addmemo);
+                    form.appendChild(form_correction);
 
                     temporary.push(i);
                     temporary.push(delete_button);
                     temporary.push(correction_button);
                     temporary.push(form); 
+                    temporary.push(form_correction);
                     
                     defaultsectionarray.push(temporary);
                     console.log(defaultsectionarray[i][3]);
                     defaultsectionarray[i][1].onclick = function(){
-                        this.parentElement.parentElement.parentElement.submit();
-                        section[0].removeChild(this.parentElement.parentElement.parentElement);
+                        if (this.innerHTML == "삭제하기"){
+                            this.parentElement.parentElement.parentElement.submit();
+                            section[0].removeChild(this.parentElement.parentElement);
+                        }
                     }
-                 
+
+                    defaultsectionarray[i][2].onclick = function(){
+                        if(this.innerHTML == "수정하기"){
+                            this.innerHTML = "취소하기";
+                            this.parentElement.childNodes[0].innerHTML = "적용하기";
+                            this.parentElement.parentElement.childNodes[0].childNodes[1].setAttribute("type","visible");  
+                            this.parentElement.childNodes[0].onclick = function(){
+                                this.parentElement.parentElement.parentElement.childNodes[2].childNodes[1].setAttribute("value",this.parentElement.parentElement.parentElement.childNodes[0].value);
+                                this.parentElement.parentElement.parentElement.childNodes[2].childNodes[0].setAttribute("value",this.parentElement.parentElement.childNodes[0].childNodes[1].value);
+                                this.parentElement.parentElement.parentElement.childNodes[2].submit();
+                            }
+                        }
+                        else if (this.innerHTML == "취소하기"){
+                            this.innerHTML = "수정하기";
+                            this.parentElement.childNodes[0].innerHTML = "삭제하기";
+                            this.parentElement.parentElement.childNodes[0].childNodes[1].setAttribute("type","hidden"); 
+                        }
+                    }     
                     
-                      
-                }
-            }
+                    
+        
             
-        }
+        }}}
+    
+        
         
         function Delete_Memo(){
             document.asdf.action="DeleteMemo.jsp";
             document.asdf.submit();
-            console.log("asdf");
+            
+        }
+
+        function logOut(){
+            document.resister.action="logout.jsp";
+            document.resister.submit();
             
         }
         function movePage_AddMemo(){
@@ -310,70 +358,143 @@
                     
                 
             for (var i=0; i<=defaultmemo_teamleader.length;i++){
+                            if(defaultmemo_teamleader[i]!="null" && defaultmemo_teamleader[i]!=undefined){
 
-                    if(defaultmemo_teamleader[i]!="null" && defaultmemo_teamleader[i]!=undefined){
+                                var form = document.createElement("form");
+                                form.setAttribute("charset", "UTF-8");
+                                form.setAttribute("method", "Post"); 
+                                form.setAttribute("action","DeleteMemo.jsp");
 
-                        var myform = document. createElement("form");
-                        var section_addmemo = document.createElement("section");
-                        var delete_button = document.createElement("button");
-                        var correction_button = document.createElement("button");
-                        var defaultmemosection2 = document.createElement('span');
-                        var buttonsection = document.createElement('span');
-                        var br = document.createElement('br');
-                        var br2 = document.createElement('br');
-                      
-                        var default_memo_wrtie = document.createTextNode('\u00a0'+'\u00a0'+'\u00a0'+defaultmemo_teamleader[i]);
-                        var default_memo_year = document.createTextNode("-"+defaultyear_teamleader[i]+" 년 ");
-                        var default_memo_month = document.createTextNode(defaultmonth_teamleader[i]+'\u00a0');
-                        var default_memo_date = document.createTextNode(defaultdate_teamleader[i]+" 일 ");
-                        var default_memo_time = document.createTextNode(defaulttime_teamleader[i]+" 시 ");
-                        var default_memo_minite = document.createTextNode(defaultminite_teamleader[i]+" 분 ");
-                        var default_who_write = document.createTextNode(defaultoffice_teamleader[i]+" 사원 ");
-                        var spacebar = document.createTextNode('\u00a0\u00a0\u00a0\u00a0\u00a0\u00a0\u00a0\u00a0\u00a0\u00a0\u00a0\u00a0'
+                                var hiddenField = document.createElement("input");
+                                hiddenField.setAttribute("type", "hidden");
+                                hiddenField.setAttribute("name", "mName");
+                                hiddenField.setAttribute("value", defaultmemo_teamleader[i]);
+                                form.appendChild(hiddenField);
+
+                                var form_correction = document.createElement("form");
+                                form_correction.setAttribute("charset", "UTF-8");
+                                form_correction.setAttribute("method", "Post"); 
+                                form_correction.setAttribute("action","CorrectMemo.jsp");
+                                form_correction.style.display = "none";
+
+                                var hiddenField_correction = document.createElement("input");
+                                hiddenField_correction.setAttribute("type", "hidden");
+                                hiddenField_correction.setAttribute("name", "mName");
+                                var hiddenField_correction_2 = document.createElement("input");
+                                hiddenField_correction_2.setAttribute("type", "hidden");
+                                hiddenField_correction_2.setAttribute("name", "originmemo");
+                                form_correction.appendChild(hiddenField_correction);
+                                form_correction.appendChild(hiddenField_correction_2);
+
+                                var section_addmemo = document.createElement("section");
+                                var delete_button = document.createElement("button");
+                                delete_button.setAttribute("name",i);
+                                var correction_button = document.createElement("button");
+                                correction_button.setAttribute("name",i);
+                                var defaultmemosection2 = document.createElement('span');
+                                var buttonsection = document.createElement('span');
+                                var input = document.createElement("input");
+                                input.setAttribute("type", "hidden");
+                                input.value = defaultmemo_teamleader[i];
+
+                                var br = document.createElement('br');
+                                var br2 = document.createElement('br');
+                                var default_memo_wrtie = document.createTextNode('\u00a0'+'\u00a0'+'\u00a0'+defaultmemo_teamleader[i]);
+                                var default_memo_year = document.createTextNode("-"+defaultyear_teamleader[i]+" 년 ");
+                                var default_memo_month = document.createTextNode(defaultmonth_teamleader[i]+'\u00a0');
+                                var default_memo_date = document.createTextNode(defaultdate_teamleader[i]+" 일 ");
+                                var default_memo_time = document.createTextNode(defaulttime_teamleader[i]+" 시 ");
+                                var default_memo_minite = document.createTextNode(defaultminite_teamleader[i]+" 분 ");
+                                var default_who_write = document.createTextNode(defaultoffice_teamleader[i]+" 팀장 ");
+                                var spacebar = document.createTextNode('\u00a0\u00a0\u00a0\u00a0\u00a0\u00a0\u00a0\u00a0\u00a0\u00a0\u00a0\u00a0'
                                                                         +'\u00a0\u00a0\u00a0\u00a0\u00a0\u00a0\u00a0\u00a0\u00a0\u00a0\u00a0\u00a0'
                                                                         +'\u00a0\u00a0\u00a0\u00a0\u00a0\u00a0\u00a0\u00a0\u00a0\u00a0\u00a0\u00a0'
                                                                         +'\u00a0\u00a0\u00a0\u00a0\u00a0\u00a0\u00a0\u00a0\u00a0');
 
-                        section_addmemo.style.backgroundColor="lightyellow";
-                        defaultmemosection2.style.color="red";
-                        defaultmemosection2.style.width="500px";
-                        section_addmemo.style.marginTop="20px";
-                        delete_button.style.marginLeft="420px";
-                        delete_button.style.width="80px";
-                        delete_button.style.height="22px";
-                        delete_button.innerHTML = "삭제하기";
-                        correction_button.style.width="80px";
-                        correction_button.style.marginLeft="10px";
-                        correction_button.style.height="22px";
-                        correction_button.innerText = "수정하기";
+                                delete_button.type="button";
+                                correction_button.type="button";
+                                input.style.zIndex = "100";
+                                input.style.position = "absolute";
+                                input.style.marginLeft = "-1%";
+                                section_addmemo.style.backgroundColor="lightyellow";
+                                defaultmemosection2.style.color="red";
+                                defaultmemosection2.style.width="500px";
+                                section_addmemo.style.marginTop="20px";
+                                delete_button.style.marginLeft="420px";
+                                delete_button.style.width="80px";
+                                delete_button.style.height="22px";
+                                delete_button.innerText = "삭제하기";
+                                correction_button.style.width="80px";
+                                correction_button.style.marginLeft="10px";
+                                correction_button.style.height="22px";
+                                correction_button.innerText = "수정하기";
+                                var temporary = [];
+                          
 
-                        defaultmemosection2.appendChild(default_memo_wrtie);
-                        defaultmemosection2.appendChild(br);
-                        defaultmemosection2.appendChild(br2);
-                        defaultmemosection2.appendChild(spacebar);
-                        defaultmemosection2.appendChild(default_memo_year);
-                        defaultmemosection2.appendChild(default_memo_month);
-                        defaultmemosection2.appendChild(default_memo_date);
-                        defaultmemosection2.appendChild(default_memo_time);
-                        defaultmemosection2.appendChild(default_memo_minite);
-                        defaultmemosection2.appendChild(default_who_write);
-                            
-                        section[0].appendChild(section_addmemo);
-                        section_addmemo.appendChild(defaultmemosection2);
-                        buttonsection.appendChild(delete_button);
-                        buttonsection.appendChild(correction_button);
-                        section_addmemo.appendChild(buttonsection);            
-                        sectionarray_teamleader.push(section_addmemo);
+                                defaultmemosection2.appendChild(default_memo_wrtie);
+                                defaultmemosection2.appendChild(input);
+                                defaultmemosection2.appendChild(br);
+                                defaultmemosection2.appendChild(br2);
+                                defaultmemosection2.appendChild(spacebar);
+                                defaultmemosection2.appendChild(default_memo_year);
+                                defaultmemosection2.appendChild(default_memo_month);
+                                defaultmemosection2.appendChild(default_memo_date);
+                                defaultmemosection2.appendChild(default_memo_time);
+                                defaultmemosection2.appendChild(default_memo_minite);
+                                defaultmemosection2.appendChild(default_who_write);
+                                
+                                
+                                section_addmemo.appendChild(defaultmemosection2);
+                                buttonsection.appendChild(delete_button);
+                                buttonsection.appendChild(correction_button);
+                                section_addmemo.appendChild(buttonsection); 
+
+                                form.appendChild(section_addmemo);
+                                form.appendChild(form_correction);
+                                section[0].appendChild(form);
+
+                                temporary.push(delete_button);
+                                temporary.push(correction_button);
+                                temporary.push(form);
+                                sectionarray_teamleader.push(temporary);
+
+                                sectionarray_teamleader[i][0].onclick = function(){
+                                    if (this.innerHTML == "삭제하기"){
+                                        this.parentElement.parentElement.parentElement.submit();
+                                        section[0].removeChild(this.parentElement.parentElement);
+                                    }
+                                }
+
+                                sectionarray_teamleader[i][1].onclick = function(){
+                                    if(this.innerHTML == "수정하기"){
+                                        this.innerHTML = "취소하기";
+                                        this.parentElement.childNodes[0].innerHTML = "적용하기";
+                                        this.parentElement.parentElement.childNodes[0].childNodes[1].setAttribute("type","visible");  
+                                        this.parentElement.childNodes[0].onclick = function(){
+                                            this.parentElement.parentElement.parentElement.childNodes[2].childNodes[1].setAttribute("value",this.parentElement.parentElement.parentElement.childNodes[0].value);
+                                            this.parentElement.parentElement.parentElement.childNodes[2].childNodes[0].setAttribute("value",this.parentElement.parentElement.childNodes[0].childNodes[1].value);
+                                            this.parentElement.parentElement.parentElement.childNodes[2].submit();
+                                        }
+                                    }
+                                    else if (this.innerHTML == "취소하기"){
+                                        this.innerHTML = "수정하기";
+                                        this.parentElement.childNodes[0].innerHTML = "삭제하기";
+                                        this.parentElement.parentElement.childNodes[0].childNodes[1].setAttribute("type","hidden"); 
+                                    }
+                                }
+
+                 
+                        
                 }
             }
         }
 
         function see_Team_Leader_Memo_Off(){
             var teamleaderbutton = document.getElementById("seeothermemo_team");
-            teamleaderbutton.value="사원 메모 보기";
+            teamleaderbutton.value="팀장 메모 보기";
             for (var i=0; i<sectionarray_teamleader.length;i++){
                 console.log(sectionarray_teamleader[i]);
-                section[0].removeChild(sectionarray_teamleader[i]);
+                section[0].removeChild(sectionarray_teamleader[i][2]);
                 }
             sectionarray_teamleader=[];
         }
@@ -435,16 +556,33 @@
                         
                     for (var i=0; i<=defaultmemo_employee.length;i++){
                             if(defaultmemo_employee[i]!="null" && defaultmemo_employee[i]!=undefined){
-                                var myform = document. createElement("form");
-                                myform.name = "myform";
-                                myform.method = "post";
-                                myform.action = "DeleteMemo.jsp";
-                                var input21 = document. createElement("input");
-                                input21.setAttribute("type", "hidden");
-                                input21.setAttribute("value",i);
-                                input21.setAttribute("name","myvalue");
-                                console.log(i);
-                                var mynum = i;
+
+                                var form = document.createElement("form");
+                                form.setAttribute("charset", "UTF-8");
+                                form.setAttribute("method", "Post"); 
+                                form.setAttribute("action","DeleteMemo.jsp");
+
+                                var hiddenField = document.createElement("input");
+                                hiddenField.setAttribute("type", "hidden");
+                                hiddenField.setAttribute("name", "mName");
+                                hiddenField.setAttribute("value", defaultmemo_employee[i]);
+                                form.appendChild(hiddenField);
+
+                                var form_correction = document.createElement("form");
+                                form_correction.setAttribute("charset", "UTF-8");
+                                form_correction.setAttribute("method", "Post"); 
+                                form_correction.setAttribute("action","CorrectMemo.jsp");
+                                form_correction.style.display = "none";
+
+                                var hiddenField_correction = document.createElement("input");
+                                hiddenField_correction.setAttribute("type", "hidden");
+                                hiddenField_correction.setAttribute("name", "mName");
+                                var hiddenField_correction_2 = document.createElement("input");
+                                hiddenField_correction_2.setAttribute("type", "hidden");
+                                hiddenField_correction_2.setAttribute("name", "originmemo");
+                                form_correction.appendChild(hiddenField_correction);
+                                form_correction.appendChild(hiddenField_correction_2);
+
                                 var section_addmemo = document.createElement("section");
                                 var delete_button = document.createElement("button");
                                 delete_button.setAttribute("name",i);
@@ -452,6 +590,10 @@
                                 correction_button.setAttribute("name",i);
                                 var defaultmemosection2 = document.createElement('span');
                                 var buttonsection = document.createElement('span');
+                                var input = document.createElement("input");
+                                input.setAttribute("type", "hidden");
+                                input.value = defaultmemo_employee[i];
+
                                 var br = document.createElement('br');
                                 var br2 = document.createElement('br');
                                 var default_memo_wrtie = document.createTextNode('\u00a0'+'\u00a0'+'\u00a0'+defaultmemo_employee[i]);
@@ -468,6 +610,9 @@
 
                                 delete_button.type="button";
                                 correction_button.type="button";
+                                input.style.zIndex = "100";
+                                input.style.position = "absolute";
+                                input.style.marginLeft = "-1%";
                                 section_addmemo.style.backgroundColor="lightyellow";
                                 defaultmemosection2.style.color="red";
                                 defaultmemosection2.style.width="500px";
@@ -481,9 +626,10 @@
                                 correction_button.style.height="22px";
                                 correction_button.innerText = "수정하기";
                                 var temporary = [];
-                                var temporary2 = [];
+                          
 
                                 defaultmemosection2.appendChild(default_memo_wrtie);
+                                defaultmemosection2.appendChild(input);
                                 defaultmemosection2.appendChild(br);
                                 defaultmemosection2.appendChild(br2);
                                 defaultmemosection2.appendChild(spacebar);
@@ -499,27 +645,40 @@
                                 buttonsection.appendChild(delete_button);
                                 buttonsection.appendChild(correction_button);
                                 section_addmemo.appendChild(buttonsection); 
-                                myform.appendChild(section_addmemo);
-                                section[0].appendChild(myform);
-                                console.log(myform);
-                                
-                                temporary.push(myform);
-                                temporary.push(input21);
+
+                                form.appendChild(section_addmemo);
+                                form.appendChild(form_correction);
+                                section[0].appendChild(form);
+
                                 temporary.push(delete_button);
                                 temporary.push(correction_button);
-                                temporary.push(section_addmemo);
+                                temporary.push(form);
                                 sectionarray.push(temporary);
 
-                                console.log(i);
-                                // i 의 값이 자꾸 101로 떠요 ㅠㅠ
                                 sectionarray[i][0].onclick = function(){
-                                    // Delete_Memo(this.name);
-                                    console.log();
+                                    if (this.innerHTML == "삭제하기"){
+                                        this.parentElement.parentElement.parentElement.submit();
+                                        section[0].removeChild(this.parentElement.parentElement);
+                                    }
                                 }
+
                                 sectionarray[i][1].onclick = function(){
-                                    console.log(sectionarray[i-100]);
+                                    if(this.innerHTML == "수정하기"){
+                                        this.innerHTML = "취소하기";
+                                        this.parentElement.childNodes[0].innerHTML = "적용하기";
+                                        this.parentElement.parentElement.childNodes[0].childNodes[1].setAttribute("type","visible");  
+                                        this.parentElement.childNodes[0].onclick = function(){
+                                            this.parentElement.parentElement.parentElement.childNodes[2].childNodes[1].setAttribute("value",this.parentElement.parentElement.parentElement.childNodes[0].value);
+                                            this.parentElement.parentElement.parentElement.childNodes[2].childNodes[0].setAttribute("value",this.parentElement.parentElement.childNodes[0].childNodes[1].value);
+                                            this.parentElement.parentElement.parentElement.childNodes[2].submit();
+                                        }
+                                    }
+                                    else if (this.innerHTML == "취소하기"){
+                                        this.innerHTML = "수정하기";
+                                        this.parentElement.childNodes[0].innerHTML = "삭제하기";
+                                        this.parentElement.parentElement.childNodes[0].childNodes[1].setAttribute("type","hidden"); 
+                                    }
                                 }
-                                
                                 
                         }   
                 
@@ -530,8 +689,7 @@
             var employeebutton = document.getElementById("seeothermemo_officer");
             employeebutton.value="사원 메모 보기";
             for (var i=0; i<sectionarray.length;i++){
-                console.log(sectionarray[i]);
-                section[0].removeChild(sectionarray[i][0]);
+                section[0].removeChild(sectionarray[i][2]);
                 }
             sectionarray=[];
         }
@@ -561,7 +719,7 @@
             <input type="button" id="addbutton" value="+" onclick="movePage_AddMemo()">
             <input type="button" id="seeothermemo_officer" value="사원 메모 보기" onclick="see_Employee_Memo_OnOff()">
             <input type="button" id="seeothermemo_team" value="팀장 메모 보기" onclick="see_Team_Leader_Memo_OnOff()">
-            <input type="button" id="logout" value="로그아웃">      
+            <input type="button" id="logout" value="로그아웃" onclick="logOut()">      
         </form>
     </main>
 </body>

@@ -30,10 +30,10 @@
     border-radius: 25px;
     width: 70px;
     height: 70px;
-    left:1160px;
-    position:fixed;
+    left: 650;
+    position: relative;
     z-index: 100;
-    top:800px;
+    bottom: 300px;
     background-color: lightyellow;
     font-size: 40px;
     font-weight: 500;
@@ -49,14 +49,14 @@
     width: 120px;
     height: 40px;
     position: relative;
-    margin-left: -35%;
+    margin-left: -21%;
     bottom:400px;
 }
 #logout{
     width: 120px;
     height: 40px;
     position: relative;
-    margin-left: -35%;
+    margin-left: -21%;
     bottom:300px;
 }
 
