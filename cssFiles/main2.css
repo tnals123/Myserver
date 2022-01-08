@@ -1,0 +1,152 @@
+.body{
+    background-color: black;
+    display: flex;
+    justify-content: center;
+}
+.header{
+    display: flex;
+    justify-content: center;
+}
+.title{
+    font-weight: 400;
+    color:yellow;
+    display: flex;
+    justify-content: center;
+}
+
+.resistersection{
+    margin-top: 50px;
+    width: 600px;
+    height: 100%;    
+    display: flex;
+    justify-content: center;
+}
+.mymemosection{
+    width: 600px;
+    height: 100%;
+    background-color: black;
+}
+#addbutton{
+    border-radius: 25px;
+    width: 70px;
+    height: 70px;
+    left: 650px;
+    position: relative;
+    z-index: 100;
+    bottom: 300px;
+    background-color: lightyellow;
+    font-size: 40px;
+    font-weight: 500;
+}
+#seeothermemo_officer{
+    width: 120px;
+    height: 40px;
+    position: relative;
+    margin-left: -35%;
+    bottom:500px;
+}
+#seeothermemo_team{
+    width: 120px;
+    height: 40px;
+    position: relative;
+    margin-left: -21%;
+    bottom:400px;
+}
+#logout{
+    width: 120px;
+    height: 40px;
+    position: relative;
+    margin-left: -21%;
+    bottom:300px;
+}
+
+@media screen and (max-width: 1000px) {
+    .mymemosection {
+        width: 500px;
+    }
+    #addbutton{
+        left: 500px;
+    }
+    #seeothermemo_officer{
+        bottom:115%
+    }
+    #seeothermemo_team{
+        bottom:115%;
+        left:100px
+    }
+    #logout{
+        bottom:115%;
+        left:200px;
+    }
+
+}
+@media screen and (max-width: 1000px) {
+    .mymemosection {
+        width: 500px;
+    }
+    #seeothermemo_officer{
+        bottom:115%
+    }
+    #seeothermemo_team{
+        bottom:115%;
+        left:100px
+    }
+    #logout{
+        bottom:115%;
+        left:200px;
+    }
+    #addbutton{
+        left:500px;
+    }
+}
+@media screen and (max-width: 600px) {
+    .mymemosection {
+        width: 400px;
+    }
+    #seeothermemo_officer{
+        bottom:115%;
+        left:50px;
+    }
+    #seeothermemo_team{
+        bottom:115%;
+        left:150px
+    }
+    #logout{
+        bottom:115%;
+        left:250px;
+    }
+    #addbutton{
+        left:350px;
+    }
+}
+@media screen and (max-width: 400px) {
+    .mymemosection {
+        width: 300px;
+    }
+    #seeothermemo_officer{
+        left:50px;
+        bottom:115%;
+    }
+    #seeothermemo_team{
+        bottom:115%;
+        left:120px;
+    }
+    #logout{
+        bottom:115%;
+        left:190px;
+    }
+    #addbutton{
+        left:200px;
+    }
+}
+@media screen and (max-width: 322px) {
+    .mymemosection {
+        width: 200px;
+    }
+}
+
+
+
+
+
+
