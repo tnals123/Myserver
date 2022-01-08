@@ -205,34 +205,35 @@
                     var delete_button = document.createElement("button");
                     var correction_button = document.createElement("button");
                     var defaultmemosection2 = document.createElement('span');
-                    var buttonsection = document.createElement('span');
+                    var defaultmemosection3 = document.createElement('div');
+                    var buttonsection = document.createElement('div');
                     var input = document.createElement("input");
                     input.setAttribute("type", "hidden");
                     input.value = defaultmemo[i];
                     var temporary = [];
 
-                    var br = document.createElement('br');
-                    var br2 = document.createElement('br');
-                    var br3 = document.createElement('br');
-                    var default_memo_wrtie = document.createTextNode('\u00a0'+'\u00a0'+'\u00a0'+defaultmemo[i]);
+                    var default_memo_wrtie = document.createTextNode(defaultmemo[i]);
                     var default_memo_year = document.createTextNode("-"+defaultyear[i]+" 년 ");
-                    var default_memo_month = document.createTextNode(defaultmonth[i]+'\u00a0');
+                    var default_memo_month = document.createTextNode(defaultmonth[i]);
                     var default_memo_date = document.createTextNode(defaultdate[i]+" 일 ");
                     var default_memo_time = document.createTextNode(defaulttime[i]+" 시 ");
                     var default_memo_minite = document.createTextNode(defaultminite[i]+" 분 ");
-                    var spacebar = document.createTextNode('\u00a0\u00a0\u00a0\u00a0\u00a0\u00a0\u00a0\u00a0\u00a0\u00a0\u00a0\u00a0'
-                                                            +'\u00a0\u00a0\u00a0\u00a0\u00a0\u00a0\u00a0\u00a0\u00a0\u00a0\u00a0\u00a0'
-                                                            +'\u00a0\u00a0\u00a0\u00a0\u00a0\u00a0\u00a0\u00a0\u00a0\u00a0\u00a0\u00a0'
-                                                            +'\u00a0\u00a0\u00a0\u00a0\u00a0\u00a0\u00a0\u00a0\u00a0\u00a0\u00a0\u00a0'
-                                                            +'\u00a0\u00a0\u00a0\u00a0\u00a0\u00a0\u00a0\u00a0\u00a0\u00a0\u00a0\u00a0');
                     
                     delete_button.type="button";
                     correction_button.type="button";
                     input.style.zIndex = "100";
                     input.style.position = "absolute";
-                    input.style.marginLeft = "-1%";
+                    input.style.left = "0px";
                     section_addmemo.style.backgroundColor = "lightyellow";
-                    defaultmemosection2.style.width="500px";
+                    section_addmemo.style.height = "90px";
+                    defaultmemosection2.style.width="300px";
+                    defaultmemosection2.style.position="relative";
+                    defaultmemosection2.style.left="10px";
+                    defaultmemosection3.style.top = "25px";
+                    defaultmemosection3.style.left = "290px";
+                    defaultmemosection3.style.position = "relative";
+                    buttonsection.style.position = "relative";
+                    buttonsection.style.top = "25px";
                     section_addmemo.style.marginTop="20px";
                     delete_button.style.marginLeft="420px";
                     delete_button.style.width="80px";
@@ -245,17 +246,15 @@
 
                     defaultmemosection2.appendChild(default_memo_wrtie);
                     defaultmemosection2.appendChild(input);
-                    defaultmemosection2.appendChild(br);
-                    defaultmemosection2.appendChild(br2);
-                    defaultmemosection2.appendChild(spacebar);
-                    defaultmemosection2.appendChild(default_memo_year);
-                    defaultmemosection2.appendChild(default_memo_month);
-                    defaultmemosection2.appendChild(default_memo_date);
-                    defaultmemosection2.appendChild(default_memo_time);
-                    defaultmemosection2.appendChild(default_memo_minite);
+                    defaultmemosection3.appendChild(default_memo_year);
+                    defaultmemosection3.appendChild(default_memo_month);
+                    defaultmemosection3.appendChild(default_memo_date);
+                    defaultmemosection3.appendChild(default_memo_time);
+                    defaultmemosection3.appendChild(default_memo_minite);
 
                     section[0].appendChild(form);
                     section_addmemo.appendChild(defaultmemosection2);
+                    section_addmemo.appendChild(defaultmemosection3);
                     buttonsection.appendChild(delete_button);
                     buttonsection.appendChild(correction_button);
                     section_addmemo.appendChild(buttonsection); 
@@ -397,25 +396,20 @@
                                 input.setAttribute("type", "hidden");
                                 input.value = defaultmemo_teamleader[i];
 
-                                var br = document.createElement('br');
-                                var br2 = document.createElement('br');
-                                var default_memo_wrtie = document.createTextNode('\u00a0'+'\u00a0'+'\u00a0'+defaultmemo_teamleader[i]);
+                                var default_memo_wrtie = document.createTextNode(defaultmemo_teamleader[i]);
                                 var default_memo_year = document.createTextNode("-"+defaultyear_teamleader[i]+" 년 ");
-                                var default_memo_month = document.createTextNode(defaultmonth_teamleader[i]+'\u00a0');
+                                var default_memo_month = document.createTextNode(defaultmonth_teamleader[i]);
                                 var default_memo_date = document.createTextNode(defaultdate_teamleader[i]+" 일 ");
                                 var default_memo_time = document.createTextNode(defaulttime_teamleader[i]+" 시 ");
                                 var default_memo_minite = document.createTextNode(defaultminite_teamleader[i]+" 분 ");
                                 var default_who_write = document.createTextNode(defaultoffice_teamleader[i]+" 팀장 ");
-                                var spacebar = document.createTextNode('\u00a0\u00a0\u00a0\u00a0\u00a0\u00a0\u00a0\u00a0\u00a0\u00a0\u00a0\u00a0'
-                                                                        +'\u00a0\u00a0\u00a0\u00a0\u00a0\u00a0\u00a0\u00a0\u00a0\u00a0\u00a0\u00a0'
-                                                                        +'\u00a0\u00a0\u00a0\u00a0\u00a0\u00a0\u00a0\u00a0\u00a0\u00a0\u00a0\u00a0'
-                                                                        +'\u00a0\u00a0\u00a0\u00a0\u00a0\u00a0\u00a0\u00a0\u00a0');
+                                
 
                                 delete_button.type="button";
                                 correction_button.type="button";
                                 input.style.zIndex = "100";
-                                input.style.position = "absolute";
-                                input.style.marginLeft = "-1%";
+                                input.style.position = "relative";
+                                input.style.left = -10-(defaultmemo_teamleader[i].length*8);
                                 section_addmemo.style.backgroundColor="lightyellow";
                                 defaultmemosection2.style.color="red";
                                 defaultmemosection2.style.width="500px";
@@ -433,9 +427,6 @@
 
                                 defaultmemosection2.appendChild(default_memo_wrtie);
                                 defaultmemosection2.appendChild(input);
-                                defaultmemosection2.appendChild(br);
-                                defaultmemosection2.appendChild(br2);
-                                defaultmemosection2.appendChild(spacebar);
                                 defaultmemosection2.appendChild(default_memo_year);
                                 defaultmemosection2.appendChild(default_memo_month);
                                 defaultmemosection2.appendChild(default_memo_date);
@@ -594,25 +585,19 @@
                                 input.setAttribute("type", "hidden");
                                 input.value = defaultmemo_employee[i];
 
-                                var br = document.createElement('br');
-                                var br2 = document.createElement('br');
-                                var default_memo_wrtie = document.createTextNode('\u00a0'+'\u00a0'+'\u00a0'+defaultmemo_employee[i]);
+                                var default_memo_wrtie = document.createTextNode(defaultmemo_employee[i]);
                                 var default_memo_year = document.createTextNode("-"+defaultyear_employee[i]+" 년 ");
-                                var default_memo_month = document.createTextNode(defaultmonth_employee[i]+'\u00a0');
+                                var default_memo_month = document.createTextNode(defaultmonth_employee[i]);
                                 var default_memo_date = document.createTextNode(defaultdate_employee[i]+" 일 ");
                                 var default_memo_time = document.createTextNode(defaulttime_employee[i]+" 시 ");
                                 var default_memo_minite = document.createTextNode(defaultminite_employee[i]+" 분 ");
                                 var default_who_write = document.createTextNode(defaultoffice_employee[i]+" 사원 ");
-                                var spacebar = document.createTextNode('\u00a0\u00a0\u00a0\u00a0\u00a0\u00a0\u00a0\u00a0\u00a0\u00a0\u00a0\u00a0'
-                                                                        +'\u00a0\u00a0\u00a0\u00a0\u00a0\u00a0\u00a0\u00a0\u00a0\u00a0\u00a0\u00a0'
-                                                                        +'\u00a0\u00a0\u00a0\u00a0\u00a0\u00a0\u00a0\u00a0\u00a0\u00a0\u00a0\u00a0'
-                                                                        +'\u00a0\u00a0\u00a0\u00a0\u00a0\u00a0\u00a0\u00a0\u00a0');
-
+                       
                                 delete_button.type="button";
                                 correction_button.type="button";
                                 input.style.zIndex = "100";
-                                input.style.position = "absolute";
-                                input.style.marginLeft = "-1%";
+                                input.style.position = "relative";
+                                input.style.left = -10-(defaultmemo_employee[i].length*8);
                                 section_addmemo.style.backgroundColor="lightyellow";
                                 defaultmemosection2.style.color="red";
                                 defaultmemosection2.style.width="500px";
@@ -626,20 +611,15 @@
                                 correction_button.style.height="22px";
                                 correction_button.innerText = "수정하기";
                                 var temporary = [];
-                          
 
                                 defaultmemosection2.appendChild(default_memo_wrtie);
                                 defaultmemosection2.appendChild(input);
-                                defaultmemosection2.appendChild(br);
-                                defaultmemosection2.appendChild(br2);
-                                defaultmemosection2.appendChild(spacebar);
                                 defaultmemosection2.appendChild(default_memo_year);
                                 defaultmemosection2.appendChild(default_memo_month);
                                 defaultmemosection2.appendChild(default_memo_date);
                                 defaultmemosection2.appendChild(default_memo_time);
                                 defaultmemosection2.appendChild(default_memo_minite);
                                 defaultmemosection2.appendChild(default_who_write);
-                                
                                 
                                 section_addmemo.appendChild(defaultmemosection2);
                                 buttonsection.appendChild(delete_button);
@@ -677,8 +657,8 @@
                                         this.innerHTML = "수정하기";
                                         this.parentElement.childNodes[0].innerHTML = "삭제하기";
                                         this.parentElement.parentElement.childNodes[0].childNodes[1].setAttribute("type","hidden"); 
+                                        }
                                     }
-                                }
                                 
                         }   
                 
