@@ -356,7 +356,7 @@
             <% for (int i=0; i<100; i++) { %>
                 defaultoffice_teamleader[<%= i %>] = "<%= user_name_teamleader[i] %>"; 
             <% } %>
-            // 깃허브실험ㅁㄴㅇㄻㄴㄷㄹsefsf
+            
                     
                 
             for (var i=0; i<=defaultmemo_teamleader.length;i++){
