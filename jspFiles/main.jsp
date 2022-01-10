@@ -129,7 +129,6 @@
             var check_user_info = "<%=user_classes%>";
             var button_seeteamleadermemo = document. getElementById("seeothermemo_team");
             var button_seeemployeememo = document. getElementById("seeothermemo_officer");
-            
 
             if (check_user_info == "employee"){
                 button_seeteamleadermemo.disabled="true";
@@ -138,7 +137,7 @@
             if (check_user_info == "team_leader"){
                 button_seeteamleadermemo.disabled="true";
             }
-
+            
             var defaultmemo = new Array();
             <% for (int i=0; i<100; i++) { %>
                 defaultmemo[<%= i %>] = "<%= user_memo[i] %>"; 
@@ -300,19 +299,10 @@
                 }
             } 
         }
-    
-        
-        
-        function Delete_Memo(){
-            document.asdf.action="DeleteMemo.jsp";
-            document.asdf.submit();
-            
-        }
 
         function logOut(){
             document.resister.action="logout.jsp";
-            document.resister.submit();
-            
+            document.resister.submit();     
         }
         function movePage_AddMemo(){
             document.resister.action="main_addmemo.jsp";
@@ -356,8 +346,6 @@
             <% for (int i=0; i<100; i++) { %>
                 defaultoffice_teamleader[<%= i %>] = "<%= user_name_teamleader[i] %>"; 
             <% } %>
-            
-                    
                 
             for (var i=0; i<=defaultmemo_teamleader.length;i++){
                             if(defaultmemo_teamleader[i]!="null" && defaultmemo_teamleader[i]!=undefined){
@@ -704,10 +692,8 @@
                 see_Employee_Memo_Off();
                 isEmployeebuttonclicked=false;
             }
-        }
-            
-        
-          
+        }   
+
     </script>
 </head>
 <body class = "body">
